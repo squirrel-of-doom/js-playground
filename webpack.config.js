@@ -10,12 +10,25 @@ var config = {
   },
 
   module: {
-    loaders: [
+    exprContextCritical: false,
+    rules: [
       // load and compile javascript
-      { test: /\.js$/, exclude: /node_modules/, loader:"babel" },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          "babel-loader"
+        ]
+      },
 
-      // load JSON files and HTML
-      { test: /\.html$/, exclude: /node_modules/, loader:"raw" },
+      // load HTML
+      {
+        test: /\.html$/,
+        exclude: /node_modules/,
+        use: [
+          "raw-loader"
+        ]
+      },
     ]
   },
 
