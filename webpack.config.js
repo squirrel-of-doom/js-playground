@@ -3,7 +3,10 @@ var appEnv = process.env.NODE_ENV || 'development';
 
 var config = {
 
-  entry: './src/main.js',
+  entry: [
+    './src/vendor.js',
+    './src/main.js'
+  ],
   output: {
     path: __dirname + '/dist',
     filename: "bundle.js"
@@ -18,6 +21,15 @@ var config = {
         exclude: /node_modules/,
         use: [
           "babel-loader"
+        ]
+      },
+
+      // load css
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [
+          "css-loader"
         ]
       },
 

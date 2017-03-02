@@ -3,7 +3,7 @@ import { Component } from '@angular/core'
 @Component({
   selector: 'olli-standings',
   template: `
-    <h1>{{appTitle}}</h1>
+    <h1 class="header teal-text">{{appTitle}}</h1>
     <input-card></input-card>
   `
 })

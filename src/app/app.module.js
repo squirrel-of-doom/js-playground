@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms'
 import { AppComponent } from './app.component'
 import { InputCardComponent } from './input-card.component'
 
+import '../styles/styles.css'
+
 @NgModule({
   imports: [
     BrowserModule,
