@@ -2,6 +2,13 @@ import { Component } from '@angular/core'
 
 @Component({
   selector: 'olli-standings',
-  template: '<h1>Hello Angular</h1>'
+  template: `
+    <h1>{{appTitle}}</h1>
+    <input-card></input-card>
+  `
 })
-export class App { }
+export class AppComponent {
+  constructor() {
+    this.appTitle = 'Olli standings'
+  }
+}
