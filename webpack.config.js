@@ -1,15 +1,16 @@
+var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var appEnv = process.env.NODE_ENV || 'development';
 
 var config = {
 
-  entry: [
-    './src/vendor.js',
-    './src/main.js'
-  ],
+  entry: {
+    main: './src/main.js',
+    vendor: './src/vendor.js'
+  },
   output: {
     path: __dirname + '/dist',
-    filename: "bundle.js"
+    filename: '[name].js'
   },
 
   module: {
@@ -27,7 +28,7 @@ var config = {
       // load css
       {
         test: /\.css$/,
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
         use: [
           "css-loader"
         ]
@@ -45,11 +46,16 @@ var config = {
   },
 
   // inject js bundle to index.html
-  plugins: [new HtmlWebpackPlugin({
-    template: './src/index.html',
-    inject: 'body',
-    minify: false
-  })],
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor'
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      inject: 'body',
+      minify: false
+    })
+  ],
 
   // webpack dev server configuration
   devServer: {

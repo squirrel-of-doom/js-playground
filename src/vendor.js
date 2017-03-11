@@ -2,5 +2,12 @@
 // Load 3rd-party libraries
 //
 
+// jQuery
+window.jQuery = require('jquery')
+window.$ = require('jquery')
+
 // Materialize
-// import '../node_modules/materialize-css/dist/js/materialize.min.js'
+require('materialize-css/dist/js/materialize.js')
+
+// moment
+window.moment = require('moment')

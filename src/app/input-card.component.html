@@ -2,14 +2,16 @@
   <form>
     <div class="form-group">
       <label for="league">Competition</label>
-      <input type="text" id="league" required />
+      <input type="text" id="league" name="competition" [(ngModel)]="competition" required />
     </div>
     <div class="form-group">
       <label for="startDate">Standings from...</label>
-      <input type="text" id="startDate" required />
+      <input type="date" class="datepicker" id="start-date" name="start"/>
       <button class="btn">Use Olli's birthdate</button>
     </div>
-
-    <button type="submit" class="btn btn-success">Show standings</button>
+    <button type="submit" id="submit" class="btn btn-success">Show standings</button>
+    <br/>
+    Competition: {{competition}}<br/>
+    Start date: {{start}}
   </form>
 </div>
