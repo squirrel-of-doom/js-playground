@@ -3,8 +3,12 @@ import { Component } from '@angular/core'
 @Component({
   selector: 'olli-standings',
   template: `
-    <h1 class="header teal-text">{{appTitle}}</h1>
-    <input-card></input-card>
+    <nav-bar [title]="appTitle"></nav-bar>
+    <div class="container">
+      <div class="section">
+        <input-card></input-card>
+      </div>
+    </div>
   `
 })
 export class AppComponent {

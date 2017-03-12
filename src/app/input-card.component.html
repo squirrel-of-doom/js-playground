@@ -1,17 +1,31 @@
-<div class="container">
-  <form>
-    <div class="form-group">
-      <label for="league">Competition</label>
-      <input type="text" id="league" name="competition" [(ngModel)]="competition" required />
-    </div>
-    <div class="form-group">
-      <label for="startDate">Standings from...</label>
-      <input type="date" class="datepicker" id="start-date" name="start"/>
-      <button class="btn">Use Olli's birthdate</button>
-    </div>
-    <button type="submit" id="submit" class="btn btn-success">Show standings</button>
-    <br/>
-    Competition: {{competition}}<br/>
-    Start date: {{start}}
-  </form>
+<div class="row">
+  <div class="col s12">
+    <form>
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">Select...</span>
+          <div class="row">
+            <div class="input-field col s12 m5">
+              <input type="text" id="league" name="competition" [(ngModel)]="competition" required/>
+              <label for="league"class="active">Competition</label>
+            </div>
+            <div class="input-field col s8 m5">
+              <input type="date" class="datepicker" id="start-date" name="start"/>
+              <label for="start">Standings from...</label>
+            </div>
+            <div class="input-field col s4 m2 center-align">
+              <button class="btn waves-effect">Olli</button>
+            </div>
+          </div>
+        </div>
+        <div class="card-action">
+          <div class="right-align">
+            <button type="submit" id="submit" class="btn btn-success waves-effect">Show standings</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
+Competition: {{competition}}<br/>
+Start date: {{start}}

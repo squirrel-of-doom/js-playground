@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser'
 import { FormsModule } from '@angular/forms'
 
 import { AppComponent } from './app.component'
+import { NavBarComponent } from './nav/nav-bar.component'
 import { InputCardComponent } from './input-card.component'
 
 import '../styles/styles.css'
@@ -14,6 +15,7 @@ import '../styles/styles.css'
   ],
   declarations: [
     AppComponent,
+    NavBarComponent,
     InputCardComponent
   ],
   bootstrap: [ AppComponent ]
