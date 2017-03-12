@@ -6,6 +6,8 @@ import { AppComponent } from './app.component'
 import { NavBarComponent } from './nav/nav-bar.component'
 import { InputCardComponent } from './input-card.component'
 
+import { FootballDataService } from './services/football-data.service'
+
 import '../styles/styles.css'
 
 @NgModule({
@@ -14,9 +16,13 @@ import '../styles/styles.css'
     FormsModule
   ],
   declarations: [
-    AppComponent,
     NavBarComponent,
-    InputCardComponent
+    InputCardComponent,
+    AppComponent
+  ],
+  providers: [
+    { provide: 'OLLI_BDATE', useValue: moment('2016-11-18') },
+    FootballDataService
   ],
   bootstrap: [ AppComponent ]
 })

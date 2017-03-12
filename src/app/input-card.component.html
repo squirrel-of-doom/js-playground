@@ -6,15 +6,17 @@
           <span class="card-title">Select...</span>
           <div class="row">
             <div class="input-field col s12 m5">
-              <input type="text" id="league" name="competition" [(ngModel)]="competition" required/>
-              <label for="league"class="active">Competition</label>
+              <select id="league" name="competition" [(ngModel)]="selectedCompetition">
+                <option *ngFor="let competition of competitions" [value]="competition.key">{{competition.name}}</option>
+              </select>
+              <label for="competition">Competition</label>
             </div>
             <div class="input-field col s8 m5">
               <input type="date" class="datepicker" id="start-date" name="start"/>
               <label for="start">Standings from...</label>
             </div>
             <div class="input-field col s4 m2 center-align">
-              <button class="btn waves-effect">Olli</button>
+              <button class="btn waves-effect" (click)="setOllisBirthday()">Olli</button>
             </div>
           </div>
         </div>
@@ -27,5 +29,6 @@
     </form>
   </div>
 </div>
-Competition: {{competition}}<br/>
-Start date: {{start}}
+Competition: {{selectedCompetition | json}}<br/>
+Start date: {{start}}<br/>
+All leagues: {{competitions | json}}

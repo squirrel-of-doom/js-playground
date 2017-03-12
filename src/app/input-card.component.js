@@ -1,13 +1,35 @@
-import { Component } from '@angular/core'
+import { Component, EventEmitter } from '@angular/core'
+
+import { InputData } from './model/input-data'
+import { FootballDataService } from './services/football-data.service'
 
 @Component({
   selector: 'input-card',
-  template: require('./input-card.component.html')
+  template: require('./input-card.component.html'),
+  outputs: [
+    'input'
+  ]
 })
 export class InputCardComponent {
-  constructor() {
-    this.competition = 'Bundesliga'
-    this.start = moment('2016-11-18')
+
+  static get parameters() {
+    return [[FootballDataService], 'OLLI_BDATE']
+  }
+
+  constructor(footballDataService, @Inject('OLLI_BDATE') OLLI_BDATE) {
+    this.selectedCompetition = undefined
+    this.start = moment().subtract(4, 'weeks')
+
+    footballDataService.getLeagues().then(leagues => {
+      this.competitions = leagues
+    })
+
+    this.OLLI_BDATE = OLLI_BDATE
+    this.input = new EventEmitter()
+  }
+
+  setOllisBirthday() {
+    this.start = this.OLLI_BDATE
   }
 
   ngAfterContentInit() {
@@ -19,7 +41,31 @@ export class InputCardComponent {
       },
       onClose: () => $(document.activeElement).blur()
     })
-    this.picker.pickadate('picker').set('select', this.start.format('YYYY-MM-DD'))
+  }
+
+  ngDoCheck() {
+    this.reInitializeLeagueSelect()
+    this.updateStartDateInput(this.start.format('YYYY-MM-DD'))
+    this.leagueSelectChangeListener($('#league').val())
+  }
+
+  reInitializeLeagueSelect() {
+    if (! $('#league option').is(this._options)) {
+      $('#league').material_select()
+      this._options = $('#league option')
+    }
+  }
+
+  updateStartDateInput(startString) {
+    if (this.picker && this.picker.pickadate('get') !== startString) {
+      this.picker.pickadate('picker').set('select', startString)
+    }
+  }
+
+  leagueSelectChangeListener(selected) {
+    if (selected && (!this.selectedCompetition || this.selectedCompetition.key !== selected)) {
+      this.selectedCompetition = this.competitions.find(c => c.key === selected)
+    }
   }
 
 }
