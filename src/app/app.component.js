@@ -6,7 +6,8 @@ import { Component } from '@angular/core'
     <nav-bar [title]="appTitle"></nav-bar>
     <div class="container">
       <div class="section">
-        <input-card></input-card>
+        <input-card (input)="onInput($event)"></input-card>
+        <br/>{{input | json}}
       </div>
     </div>
   `
@@ -15,4 +16,9 @@ export class AppComponent {
   constructor() {
     this.appTitle = 'Olli standings'
   }
+
+  onInput(inputData) {
+    this.input = inputData
+  }
+
 }

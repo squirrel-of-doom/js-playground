@@ -32,6 +32,10 @@ export class InputCardComponent {
     this.start = this.OLLI_BDATE
   }
 
+  onSubmit() {
+    this.input.emit(new InputData(this.selectedCompetition, this.start))
+  }
+
   ngAfterContentInit() {
     this.picker = $('#start-date').pickadate({
       format: 'yyyy-mm-dd',
@@ -53,6 +57,7 @@ export class InputCardComponent {
     if (! $('#league option').is(this._options)) {
       $('#league').material_select()
       this._options = $('#league option')
+      // TODO preselect first entry!
     }
   }
 
