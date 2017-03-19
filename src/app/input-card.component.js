@@ -17,60 +17,30 @@ export class InputCardComponent {
   }
 
   constructor(footballDataService, @Inject('OLLI_BDATE') OLLI_BDATE) {
-    this.selectedCompetition = undefined
+    this.league = undefined
     this.start = moment().subtract(4, 'weeks')
 
     footballDataService.getLeagues().then(leagues => {
       this.competitions = leagues
+      this.league = leagues[0]
     })
 
     this.OLLI_BDATE = OLLI_BDATE
     this.input = new EventEmitter()
   }
 
-  setOllisBirthday() {
+  useOllisBirthday() {
     this.start = this.OLLI_BDATE
+    $('#bdate').blur()
   }
 
   onSubmit() {
-    this.input.emit(new InputData(this.selectedCompetition, this.start))
+    this.input.emit(new InputData(this.league, this.start))
+    $('#submit').blur()
   }
 
-  ngAfterContentInit() {
-    this.picker = $('#start-date').pickadate({
-      format: 'yyyy-mm-dd',
-      onSet: (x) => {
-        this.start = moment(x.select)
-        this.picker.pickadate('close')
-      },
-      onClose: () => $(document.activeElement).blur()
-    })
-  }
-
-  ngDoCheck() {
-    this.reInitializeLeagueSelect()
-    this.updateStartDateInput(this.start.format('YYYY-MM-DD'))
-    this.leagueSelectChangeListener($('#league').val())
-  }
-
-  reInitializeLeagueSelect() {
-    if (! $('#league option').is(this._options)) {
-      $('#league').material_select()
-      this._options = $('#league option')
-      // TODO preselect first entry!
-    }
-  }
-
-  updateStartDateInput(startString) {
-    if (this.picker && this.picker.pickadate('get') !== startString) {
-      this.picker.pickadate('picker').set('select', startString)
-    }
-  }
-
-  leagueSelectChangeListener(selected) {
-    if (selected && (!this.selectedCompetition || this.selectedCompetition.key !== selected)) {
-      this.selectedCompetition = this.competitions.find(c => c.key === selected)
-    }
+  ngAfterViewInit() {
+    this.start = moment().subtract(4, 'weeks')
   }
 
 }

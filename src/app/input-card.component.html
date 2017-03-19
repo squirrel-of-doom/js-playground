@@ -1,22 +1,20 @@
 <div class="row">
   <div class="col s12">
-    <form  (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()">
       <div class="card">
         <div class="card-content">
           <span class="card-title">Select...</span>
           <div class="row">
             <div class="input-field col s12 m5">
-              <select id="league" name="competition" [(ngModel)]="selectedCompetition">
-                <option *ngFor="let competition of competitions" [value]="competition.key">{{competition.name}}</option>
-              </select>
-              <label for="competition">Competition</label>
+              <league-select id="league" name="competition" [(currentLeague)]="league" [leagues]="competitions"></league-select>
+              <label for="competition" class="active">Competition</label>
             </div>
             <div class="input-field col s8 m5">
-              <input type="date" class="datepicker" id="start-date" name="start"/>
-              <label for="start">Standings from...</label>
+              <datepicker id="start-date" name="start" [(date)]="start"></datepicker>
+              <label for="start" class="active">Standings from...</label>
             </div>
             <div class="input-field col s4 m2 center-align">
-              <button class="btn waves-effect" (click)="setOllisBirthday()">Olli</button>
+              <button type="button" id="bdate" class="btn waves-effect" (click)="useOllisBirthday()">Olli</button>
             </div>
           </div>
         </div>
@@ -29,6 +27,6 @@
     </form>
   </div>
 </div>
-Competition: {{selectedCompetition | json}}<br/>
+Competition: {{league | json}}<br/>
 Start date: {{start}}<br/>
 All leagues: {{competitions | json}}
