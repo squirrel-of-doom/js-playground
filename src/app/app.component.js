@@ -7,7 +7,7 @@ import { Component } from '@angular/core'
     <div class="container">
       <div class="section">
         <input-card (input)="onInput($event)"></input-card>
-        <br/>{{input | json}}
+        <br/>
         <result-card [parameters]="input"></result-card>
       </div>
     </div>

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core'
 
-import { InputData } from './model/input-data'
-import { FootballDataService } from './services/football-data.service'
+import { FootballDataService } from '../football-data/services/football-data.service'
+
+import { InputData } from '../model/input-data'
 
 @Component({
   selector: 'result-card',
