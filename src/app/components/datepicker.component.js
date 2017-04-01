@@ -23,10 +23,8 @@ export class DatepickerComponent {
       format: 'yyyy-mm-dd',
       onSet: (x) => {
         this.picker.pickadate('close')
-        setTimeout(_ => {
-          this.dateValue = moment(x.select)
-          this.dateChange.emit(this.dateValue)
-        }, 1)
+        this.dateValue = moment(x.select)
+        this.dateChange.emit(this.dateValue)
       },
       onClose: () => $(document.activeElement).blur()
     })
@@ -38,7 +36,9 @@ export class DatepickerComponent {
 
   set date(d) {
     if (d && this.picker && this.picker.pickadate('get') !== d.format('YYYY-MM-DD')) {
-      this.picker.pickadate('picker').set('select', d.format('YYYY-MM-DD'))
+      setTimeout(_ => {
+        this.picker.pickadate('picker').set('select', d.format('YYYY-MM-DD'))
+      }, 1)
     }
   }
 }

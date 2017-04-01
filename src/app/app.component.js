@@ -8,6 +8,7 @@ import { Component } from '@angular/core'
       <div class="section">
         <input-card (input)="onInput($event)"></input-card>
         <br/>{{input | json}}
+        <result-card [parameters]="input"></result-card>
       </div>
     </div>
   `
