@@ -1,0 +1,49 @@
+[{
+    "_links": {
+        "self": {
+            "href": "http://api.football-data.org/v1/competitions/426"
+        },
+        "teams": {
+            "href": "http://api.football-data.org/v1/competitions/426/teams"
+        },
+        "fixtures": {
+            "href": "http://api.football-data.org/v1/competitions/426/fixtures"
+        },
+        "leagueTable": {
+            "href": "http://api.football-data.org/v1/competitions/426/leagueTable"
+        }
+    },
+    "id": 426,
+    "caption": "Premier League 2016/17",
+    "league": "PL",
+    "year": "2016",
+    "currentMatchday": 31,
+    "numberOfMatchdays": 38,
+    "numberOfTeams": 20,
+    "numberOfGames": 380,
+    "lastUpdated": "2017-04-06T07:58:02Z"
+}, {
+    "_links": {
+        "self": {
+            "href": "http://api.football-data.org/v1/competitions/430"
+        },
+        "teams": {
+            "href": "http://api.football-data.org/v1/competitions/430/teams"
+        },
+        "fixtures": {
+            "href": "http://api.football-data.org/v1/competitions/430/fixtures"
+        },
+        "leagueTable": {
+            "href": "http://api.football-data.org/v1/competitions/430/leagueTable"
+        }
+    },
+    "id": 430,
+    "caption": "1. Bundesliga 2016/17",
+    "league": "BL1",
+    "year": "2016",
+    "currentMatchday": 28,
+    "numberOfMatchdays": 34,
+    "numberOfTeams": 18,
+    "numberOfGames": 306,
+    "lastUpdated": "2017-04-06T07:00:05Z"
+}]

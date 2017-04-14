@@ -4,6 +4,8 @@ import { FootballDataService } from '../football-data/services/football-data.ser
 
 import { InputData } from '../model/input-data'
 
+import 'rxjs/add/operator/toArray'
+
 @Component({
   selector: 'result-card',
   template: require('./result-card.component.html'),
@@ -19,18 +21,20 @@ export class ResultCardComponent {
 
   constructor(footballDataService) {
     this._dataService = footballDataService
-    // footballDataService.retrieveFixtures('BL1', moment('2017-02-21'), moment('2017-03-21')).subscribe(resp =>
-    //   this.fixtures = resp
-    // )
   }
 
   set parameters(p) {
     this.parametersValue = p
 
-    this.standings = this._dataService.getStandings({
+    this._dataService.getStandings({
       'league': 'BL1',
       'start': moment('2017-02-21')
-    })
+    }).toArray().subscribe(
+      x => {
+        console.log(x)
+        this.standings = x
+      }
+    )
   }
 
   get parameters() {

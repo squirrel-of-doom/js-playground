@@ -2,14 +2,14 @@ const WIN = 'WIN'
 const DRAW = 'DRAW'
 const LOSS = 'LOSS'
 
-export class TeamStandings {
+export class TeamRecord {
 
   static get WIN() { return WIN }
   static get DRAW() { return DRAW }
   static get LOSS() { return LOSS }
 
-  constructor() {
-    this.team = undefined
+  constructor(team) {
+    this.team = team
 
     this.points = 0
     this.goalsFor = 0
@@ -20,6 +20,10 @@ export class TeamStandings {
       'DRAW': 0,
       'LOSS': 0
     }
+  }
+
+  get teamName() {
+    return this.team
   }
 
   get goalDifference() {
@@ -39,6 +43,8 @@ export class TeamStandings {
     } else if (goalsFor < goalsAgainst) {
       this.record[LOSS] += 1
     }
+
+    return this
   }
 
 }

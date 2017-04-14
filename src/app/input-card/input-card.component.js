@@ -3,6 +3,8 @@ import { Component, EventEmitter } from '@angular/core'
 import { InputData } from '../model/input-data'
 import { FootballDataService } from '../football-data/services/football-data.service'
 
+import 'rxjs/add/operator/first'
+
 @Component({
   selector: 'input-card',
   template: require('./input-card.component.html'),
@@ -20,10 +22,13 @@ export class InputCardComponent {
     this.league = undefined
     this.start = moment().subtract(4, 'weeks')
 
-    footballDataService.getLeagues().then(leagues => {
-      this.competitions = leagues
-      this.league = leagues[0]
-    })
+    let leagues = footballDataService.getLeagues()
+    leagues.toArray().subscribe(
+      l => this.competitions = l
+    )
+    leagues.first().subscribe(
+      l => this.league = l
+    )
 
     this.OLLI_BDATE = OLLI_BDATE
     this.input = new EventEmitter()
