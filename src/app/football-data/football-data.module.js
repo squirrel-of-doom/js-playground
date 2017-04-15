@@ -5,6 +5,8 @@ import { HttpModule } from '@angular/http'
 import { FootballDataService } from './services/football-data.service'
 import { FootballDataHttpService } from './services/football-data-http.service'
 import { MockFootballDataHttpService } from './services/mock-football-data-http.service'
+import { SeasonYearsService } from './services/season-years.service'
+import { StandingsService } from './services/standings.service'
 
 @NgModule({
   imports: [
@@ -13,7 +15,9 @@ import { MockFootballDataHttpService } from './services/mock-football-data-http.
   providers: [
     FootballDataService,
     FootballDataHttpService,
-    MockFootballDataHttpService
+    MockFootballDataHttpService,
+    SeasonYearsService,
+    StandingsService
   ]
 })
 export class FootballDataModule { }

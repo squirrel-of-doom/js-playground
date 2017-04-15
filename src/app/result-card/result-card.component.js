@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 
-import { FootballDataService } from '../football-data/services/football-data.service'
+import { StandingsService } from '../football-data/services/standings.service'
 
 import { InputData } from '../model/input-data'
 
@@ -16,17 +16,17 @@ import 'rxjs/add/operator/toArray'
 export class ResultCardComponent {
 
   static get parameters() {
-    return [[FootballDataService]]
+    return [[StandingsService]]
   }
 
-  constructor(footballDataService) {
-    this._dataService = footballDataService
+  constructor(standingsService) {
+    this._standingsService = standingsService
   }
 
   set parameters(p) {
     this.parametersValue = p
 
-    this._dataService.getStandings({
+    this._standingsService.standings({
       'league': 'BL1',
       'start': moment('2017-02-21')
     }).toArray().subscribe(

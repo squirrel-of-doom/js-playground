@@ -6,7 +6,7 @@
           <span class="card-title">Select...</span>
           <div class="row">
             <div class="input-field col s12 m5">
-              <league-select id="league" name="competition" [(currentLeague)]="league" [leagues]="competitions"></league-select>
+              <league-select id="league" name="competition" [(currentLeague)]="league" [leagues]="leagues"></league-select>
               <label for="competition" class="active">Competition</label>
             </div>
             <div class="input-field col s8 m5">
@@ -29,4 +29,4 @@
 </div>
 Competition: {{league | json}}<br/>
 Start date: {{start}}<br/>
-All leagues: {{competitions | json}}
+All leagues: {{leagues | json}}

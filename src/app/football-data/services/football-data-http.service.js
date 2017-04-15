@@ -3,7 +3,7 @@ import { Http, BaseRequestOptions, Headers, URLSearchParams } from '@angular/htt
 
 import 'rxjs/add/operator/map'
 
-import { KEYS } from '../config/keys'
+import KEYS from '../config/keys.json'
 
 const BASE_URL = 'https://api.football-data.org/v1'
 const API_KEY = KEYS['api-key']
@@ -24,11 +24,10 @@ export class FootballDataHttpService {
     return this.performGet(url)
   }
 
-  // retrieveFixtures(league, from, to) {
-  //   const fixturesUrl = 'http://api.football-data.org/v1/fixtures'
-  //   let requestUrl = `${fixturesUrl}?timeFrameStart=${from.format('YYYY-MM-DD')}&timeFrameEnd=${to.format('YYYY-MM-DD')}&league=${league}`
-  //   return this.http.get(requestUrl)
-  // }
+  retrieveFixtures(seasonId) {
+    const url = `${BASE_URL}/competitions/${seasonId}/fixtures`
+    return this.performGet(url)
+  }
 
   performGet(url) {
     return this.http.get(url, new BaseRequestOptions().merge({

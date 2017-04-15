@@ -22,9 +22,9 @@ export class InputCardComponent {
     this.league = undefined
     this.start = moment().subtract(4, 'weeks')
 
-    let leagues = footballDataService.getLeagues()
+    let leagues = footballDataService.allLeagues()
     leagues.toArray().subscribe(
-      l => this.competitions = l
+      l => this.leagues = l
     )
     leagues.first().subscribe(
       l => this.league = l
