@@ -19,13 +19,18 @@ export class FootballDataHttpService {
     this.http = http
   }
 
-  retrieveSeason(season) {
-    const url = `${BASE_URL}/competitions?season=${season}`
+  retrieveSeason(seasonYear) {
+    const url = `${BASE_URL}/competitions?season=${seasonYear}`
     return this.performGet(url)
   }
 
   retrieveFixtures(seasonId) {
     const url = `${BASE_URL}/competitions/${seasonId}/fixtures`
+    return this.performGet(url)
+  }
+
+  retrieveTeams(seasonId) {
+    const url = `${BASE_URL}/competitions/${seasonId}/teams`
     return this.performGet(url)
   }
 

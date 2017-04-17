@@ -7,10 +7,12 @@ import { Match } from '../../model/match'
 
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/observable/of'
+import 'rxjs/add/operator/do'
 import 'rxjs/add/operator/filter'
 import 'rxjs/add/operator/groupBy'
 import 'rxjs/add/operator/mergeMap'
 import 'rxjs/add/operator/reduce'
+import 'rxjs/add/operator/share'
 
 @Injectable()
 export class StandingsService {
@@ -33,6 +35,8 @@ export class StandingsService {
       seasonYear => this.footballDataService.leagueSeason(input.league, seasonYear)
     )
 
+    let clubs = this.footballDataService.clubsForSeasons(seasons).share()
+
     return this.footballDataService.matchesForSeasons(seasons).filter(
       match => match.date.isSameOrAfter(input.start)
     ).mergeMap(
@@ -42,7 +46,9 @@ export class StandingsService {
     ).mergeMap(
       recordStream => recordStream.reduce(
         (standing, record) => standing.addResult(record.goalsFor, record.goalsAgainst)
-      ).single()
+      ).single().do(
+        standing => clubs.single(club => club.name === standing.team).subscribe(club => standing.team = club)
+      )
     )
   }
 

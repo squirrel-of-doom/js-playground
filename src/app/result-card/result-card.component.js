@@ -26,10 +26,12 @@ export class ResultCardComponent {
   set parameters(p) {
     this.parametersValue = p
 
-    this._standingsService.standings({
+    let dummyParameters = {
       'league': 'BL1',
       'start': moment('2017-02-21')
-    }).toArray().subscribe(
+    }
+
+    this._standingsService.standings(dummyParameters).toArray().subscribe(
       x => {
         console.log(x)
         this.standings = x
