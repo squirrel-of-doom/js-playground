@@ -31,7 +31,7 @@ export class StandingsService {
       return Observable.empty()
     }
 
-    let seasons = this.seasonYearsService.seasonYears(input.start).mergeMap(
+    let seasons = this.seasonYearsService.seasonYears(input.start, input.stop).mergeMap(
       seasonYear => this.footballDataService.leagueSeason(input.league, seasonYear)
     )
 

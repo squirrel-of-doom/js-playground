@@ -40,7 +40,7 @@ export class InputCardComponent {
   }
 
   onSubmit() {
-    this.input.emit(new InputData(this.league, this.start))
+    this.input.emit(new InputData(this.league, this.start, moment()))
     $('#submit').blur()
   }
 

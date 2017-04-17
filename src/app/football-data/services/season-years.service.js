@@ -9,15 +9,15 @@ import 'rxjs/add/operator/takeWhile'
 @Injectable()
 export class SeasonYearsService {
 
-  seasonYears(start) {
-    let stop = this.identifySeason()
+  seasonYears(start, stop) {
+    let stopSeason = this.identifySeason(stop)
 
     return Observable.of(start).map(
       date => this.identifySeason(date)
     ).expand(
       seasonYear => Observable.of(seasonYear + 1)
     ).takeWhile(
-      seasonYear => (seasonYear <= stop)
+      seasonYear => (seasonYear <= stopSeason)
     )
   }
 
