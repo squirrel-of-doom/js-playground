@@ -47,4 +47,11 @@ export class TeamRecord {
     return this
   }
 
+  compare(other) {
+    if (this.points !== other.points) return (this.points - other.points)
+    if (this.goalDifference !== other.goalDifference) return (this.goalDifference - other.goalDifference)
+    if (this.goalsFor !== other.goalsFor) return (this.goalsFor - other.goalsFor)
+    return 0
+  }
+
 }

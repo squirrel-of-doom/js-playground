@@ -32,10 +32,7 @@ export class ResultCardComponent {
     }
 
     this._standingsService.standings(dummyParameters).toArray().subscribe(
-      x => {
-        console.log(x)
-        this.standings = x
-      }
+      x => this.standings = x.sort((a, b) => a.compare(b)).reverse()
     )
   }
 

@@ -48,7 +48,11 @@ var config = {
   // inject js bundle to index.html
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor'
+      name: 'vendor',
+      minChunks: module => (module.context && module.context.indexOf('node_modules') !== -1)
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest'
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
