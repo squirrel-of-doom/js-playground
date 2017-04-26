@@ -1,24 +1,16 @@
 import { Injectable } from '@angular/core'
 
 import { Observable } from 'rxjs/Observable'
-import 'rxjs/add/observable/of'
-import 'rxjs/add/operator/expand'
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/takeWhile'
+import 'rxjs/add/observable/range'
 
 @Injectable()
 export class SeasonYearsService {
 
   seasonYears(start, stop) {
+    let startSeason = this.identifySeason(start)
     let stopSeason = this.identifySeason(stop)
 
-    return Observable.of(start).map(
-      date => this.identifySeason(date)
-    ).expand(
-      seasonYear => Observable.of(seasonYear + 1)
-    ).takeWhile(
-      seasonYear => (seasonYear <= stopSeason)
-    )
+    return Observable.range(startSeason, stopSeason - startSeason + 1)
   }
 
   identifySeason(m) {

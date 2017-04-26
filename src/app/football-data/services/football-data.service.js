@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core'
 
-// import { FootballDataHttpService } from './football-data-http.service'
-import { MockFootballDataHttpService } from './mock-football-data-http.service'
+import { FootballDataHttpService } from './football-data-http.service'
 
 import LEAGUES from '../config/leagues.json'
 import { Match } from '../../model/match'
@@ -19,13 +18,11 @@ import 'rxjs/add/operator/single'
 export class FootballDataService {
 
   static get parameters() {
-    return [[MockFootballDataHttpService]]
-    // return [[FootballDataHttpService]]
+    return [[FootballDataHttpService]]
   }
 
   constructor(footballDataHttpService) {
     this.footballDataHttpService = footballDataHttpService
-    this.teamCache = []
   }
 
   allLeagues() {

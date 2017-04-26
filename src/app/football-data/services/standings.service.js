@@ -6,6 +6,7 @@ import { SeasonYearsService } from './season-years.service'
 import { Match } from '../../model/match'
 
 import { Observable } from 'rxjs/Observable'
+import 'rxjs/add/observable/empty'
 import 'rxjs/add/observable/of'
 import 'rxjs/add/operator/do'
 import 'rxjs/add/operator/filter'
@@ -32,7 +33,7 @@ export class StandingsService {
     }
 
     let seasons = this.seasonYearsService.seasonYears(input.start, input.stop).mergeMap(
-      seasonYear => this.footballDataService.leagueSeason(input.league, seasonYear)
+      seasonYear => this.footballDataService.leagueSeason(input.league.key, seasonYear)
     )
 
     let clubs = this.footballDataService.clubsForSeasons(seasons).share()

@@ -1,4 +1,4 @@
-<div class="row">
+<div  *ngIf="parametersValue" class="row">
     <div class="col s12">
         <div class="card">
             <div class="card-content">
@@ -21,7 +21,6 @@
                         <tbody>
                             <tr *ngFor="let entry of standings; let pos = index">
                                 <td class="right-align">{{pos + 1}}.</td>
-                                <!-- <td><img src="{{entry.team.crestUrl}}" width="24em"/>{{entry.team.name}}</td> -->
                                 <td>{{entry.team.name}}</td>
                                 <td class="center-align">{{entry.record.WIN}}</td>
                                 <td class="center-align">{{entry.record.DRAW}}</td>

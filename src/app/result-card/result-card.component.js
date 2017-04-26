@@ -26,12 +26,7 @@ export class ResultCardComponent {
   set parameters(p) {
     this.parametersValue = p
 
-    let dummyParameters = {
-      'league': 'BL1',
-      'start': moment('2017-02-21')
-    }
-
-    this._standingsService.standings(dummyParameters).toArray().subscribe(
+    this._standingsService.standings(p).toArray().subscribe(
       x => this.standings = x.sort((a, b) => a.compare(b)).reverse()
     )
   }
